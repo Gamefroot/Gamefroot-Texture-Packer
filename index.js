@@ -243,30 +243,35 @@ function generate(files, options, callback) {
       var ow = options.width;
       var oh = options.height;
       var baseName = options.name;
-      async.each(options.atlases, function(atlas, done){
+      async.eachSeries(options.atlases, function(atlas, done){
         options.name = atlas.name = baseName + '-' + (++n);
         options.width = atlas.width;
         options.height = atlas.height;
         generator.generateImage(atlas.files, options, done);
-      }, callback);
-      options.name = baseName;
-      options.width = ow;
-      options.height = oh;
+      }, function () {
+        options.name = baseName;
+        options.width = ow;
+        options.height = oh;
+        callback();
+      } );
     },
     function (callback) {
       var n = 0;
       var ow = options.width;
       var oh = options.height;
       var baseName = options.name;
-      async.each(options.atlases, function(atlas, done){
+      async.eachSeries(options.atlases, function(atlas, done){
         options.name = baseName + '-' + (++n); 
         options.width = atlas.width;
         options.height = atlas.height;
         generator.generateData(atlas.files, options, done);
-      }, callback);
-      options.name = baseName;
-      options.width = ow;
-      options.height = oh;
+      }, function () {
+        options.name = baseName;
+        options.width = ow;
+        options.height = oh;
+        callback();
+      } );
+        
     }
   ],
     callback);
