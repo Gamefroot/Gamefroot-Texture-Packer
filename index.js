@@ -16,6 +16,7 @@ var FORMATS = {
   'sparrow': {template: 'starling.template', extension: 'xml', trim: true},
   'easel.js': {template: 'easeljs.template', extension: 'json', trim: false},
   'cocos2d': {template: 'cocos2d.template', extension: 'plist', trim: false},
+  'cocos2dx': {template: 'cocos2dx.template', extension: 'plist', trim: false},
   'css': {template: 'css.template', extension: 'css', trim: false},
   'kiwi': {template: 'kiwi.template', extension: 'json', trim: false}
 };
